@@ -4,3 +4,6 @@
 [submodule "utms-backend"]
 	path = utms-backend
 	url = https://gitlab-talentboost.vmware.com/sim0na1999/utms-backend
+[submodule "utms-frontend"]
+	path = utms-frontend
+	url = https://gitlab-talentboost.vmware.com/sim0na1999/utms-frontend
