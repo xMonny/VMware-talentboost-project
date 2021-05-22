@@ -1,0 +1,43 @@
+<div class="project-detail" *ngIf="project">
+
+    <section>
+        <div class="project-header">
+            <h2 id="project-name">{{ project.name }}</h2>
+            <p id="project-description">{{ project.description }}</p>
+        </div>
+
+        <div class="status-content">
+            <div id="status">
+                <h3 id="status-label">Status:
+                    <label *ngFor="let run of runs.reverse(); let first = first">
+                        <span *ngIf="first && run.status === 'passed'" style="color: rgb(0, 104, 0);"> Passing </span>
+                        <span *ngIf="first && run.status === 'failed'" style="color: red;"> Failing </span>
+                        <span *ngIf="first && run.status === 'skipped'" style="color: red;"> Skipped </span>
+                    </label>
+                </h3>
+            </div>
+        </div>
+
+        <div class = "runs-content">
+            <h3>Last 5 runs: </h3>
+            <table class="runs-table">
+                <tbody>
+                    <tr *ngFor="let run of runs.slice(0, 5)">
+                        <td id="run-id">
+                            <a [routerLink]="['./runs', run.id]">#{{ run.id }}</a>
+                        </td>
+                        <td id="run-status" *ngIf="run.status === 'passed'" style="color: rgb(0, 104, 0);">{{ run.status.substr(0,1).toUpperCase() + run.status.substr(1) }}</td>
+                        <td id="run-status" *ngIf="run.status === 'failed' || run.status === 'skipped'" style="color: red;">{{ run.status.substr(0,1).toUpperCase() + run.status.substr(1) }}</td>
+                        <td id="run-suites-number">
+                            {{ filterEnabledTestCases(run).length }} / {{ filterPassedTestCases(run).length }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<ng-template #loading>
+    <cds-progress-circle size="xl" aria-label="Project is loading"></cds-progress-circle>
+</ng-template>

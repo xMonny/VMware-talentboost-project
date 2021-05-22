@@ -1,0 +1,8 @@
+<div class="project-conatiner">
+    <p>
+        <label id="projects_label">Projects:</label>
+    </p>
+    <div *ngFor="let project of projects; index as i">
+        <a [routerLink]="['/projects', project.name]">{{project.name}}</a>
+    </div>
+</div>

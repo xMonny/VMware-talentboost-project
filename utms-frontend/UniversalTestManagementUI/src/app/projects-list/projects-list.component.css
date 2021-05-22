@@ -1,0 +1,15 @@
+.project-conatiner {
+    margin-top: -30px;
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+p {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+a:visited {
+    color: blue;
+}
