@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                dir("UniversalTestManagementSystem") {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+        stage('Publish') {
+            steps {
+                dir("UniversalTestManagementSystem/target") {
+                    archiveArtifacts artifacts: 'utms-cli.jar', onlyIfSuccessful: true
+                }
+            }
+        }
+    }
+}
