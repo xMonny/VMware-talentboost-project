@@ -1,0 +1,21 @@
+project:
+  name: Project
+  description: None
+  suites:
+    - SecurityTests:
+      - TestDirectoryCreating:
+        enabled: true
+        command: mkdir hello
+        description: This creates new directory hello
+      - Test1:
+        enabled: true
+        command: echo Test 1
+        description: This test does something too
+    - UITests:
+      - Test2:
+        enabled: true
+        command: echo Test 2
+        description: Hello from Test 2 in UITests suite
+      - Test4:
+        enabled: false
+        command: echo Test 4

@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+            steps {
+                git credentialsId: 'git', url: 'https://gitlab-talentboost.vmware.com/sim0na1999/utms-sandbox.git'
+            }
+        }
+        stage('Fetch Artifact') {
+            steps {
+                copyArtifacts filter: 'utms-cli.jar', fingerprintArtifacts: true, projectName: 'utms-cli', selector: lastSuccessful()
+                sh 'java -jar utms-cli.jar --config testing.yaml --server http://192.168.56.1:8081/projects --debug true'
+            }
+        }
+    }
+}
